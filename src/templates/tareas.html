@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tareas</title>
+</head>
+<body>
+    </ul>    
+    <h2>Añadir Nueva Tarea</h2>
+    <form action="/agregar_tarea" method="POST">
+        <input type="text" name="descripcion" placeholder="Descripción de la tarea" required>
+        <button type="submit">Agregar Tarea</button>
+    </form>
+    <h1>Lista de Tareas</h1>
+    <ul>
+        {% for tarea in tareas %}
+            <li>
+                {{ tarea.Descripcion }}
+                {% if tarea.Estado %}
+                    <span>(Completada)</span>
+                {% else %}
+                    <span>(Sin Completar)</span>
+                {% endif %}
+                <a href="{{ url_for('completar_tarea', tarea_Id=tarea.Id) }}">Marcar como Completada</a>
+                <a href="{{ url_for('eliminar_tarea', tarea_Id=tarea.Id) }}">Eliminar</a>
+            </li>
+        {% endfor %}
+    
+</body>
+</html>
